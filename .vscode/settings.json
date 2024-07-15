@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+		"berublan.vscode-log-viewer"
+	],
+    "logViewer.watch": [
+        {
+            "title": "System Logs",
+            "pattern": "src/logs/system.log"
+        }
+    ],
+    "pylint.cwd": "${workspaceFolder}/src/backend/"
+}
