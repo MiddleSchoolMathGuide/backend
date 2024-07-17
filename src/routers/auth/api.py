@@ -8,6 +8,7 @@ from db.src.auth import login, session
 
 router = APIRouter()
 
+
 @router.post('/auth/login', response_class=ORJSONResponse)
 async def login_api(request: Request) -> ORJSONResponse:
     data = await request.json()
