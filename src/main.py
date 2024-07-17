@@ -9,12 +9,9 @@ import uvicorn
 
 from const import DEBUG_FLAG, PORT
 
-from db.src import init
-
 
 def main() -> None:
     '''Run backend'''
-    init.init()
     uvicorn.run("server:app", host="0.0.0.0", port=PORT,
                 reload=DEBUG_FLAG, log_config='config/logger.config.ini')
 
