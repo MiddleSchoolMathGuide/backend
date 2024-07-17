@@ -2,4 +2,6 @@ from fastapi import APIRouter
 
 from . import pages
 
-users_routers: tuple[APIRouter, ...] = (pages.router,)
+from .me import api
+
+users_routers: tuple[APIRouter, ...] = (pages.router, api.router,)
