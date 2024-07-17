@@ -1,3 +1,6 @@
 [submodule "src/db"]
 	path = src/db
 	url = https://github.com/MiddleSchoolMathGuide/dbhandler
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/MiddleSchoolMathGuide/frontend
