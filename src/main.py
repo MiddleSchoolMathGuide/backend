@@ -7,7 +7,7 @@ import logging.config
 import os
 import uvicorn
 
-from utils.const import DEBUG_FLAG, PORT
+from const import DEBUG_FLAG, PORT
 
 from db.src import init
 
