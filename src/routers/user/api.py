@@ -9,7 +9,7 @@ from db.src.users import profile
 router = APIRouter()
 
 
-@router.get('/users/me', response_class=ORJSONResponse)
+@router.get('/user/is_logged_in', response_class=ORJSONResponse)
 async def is_logged_in(request: Request) -> ORJSONResponse:
     if session.is_expired(request.cookies.get('auth_cookie') or ''):
         return ORJSONResponse(
