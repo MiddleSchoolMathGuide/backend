@@ -23,7 +23,7 @@ async def editor_page(request: Request) -> HTMLResponse:
         content = f.read()
 
     if topic_name != 'new':
-        topic = topics.get_topic(topic_name)
+        topic = topics.get_topic_by_title(topic_name)
         content = content.replace(
             '<div id="dynamic-data" data=\'\'></div>',
             f'<div id="dynamic-data" data=\'{json.dumps(topic, default=str)}\'></div>',
