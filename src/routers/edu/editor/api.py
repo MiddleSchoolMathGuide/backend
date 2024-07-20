@@ -24,3 +24,4 @@ async def update_topic(request: Request) -> ORJSONResponse:
         )
 
     topics.set(topic_update['content'])
+    return ORJSONResponse({'ok': True, 'msg': 'Update successful'})
