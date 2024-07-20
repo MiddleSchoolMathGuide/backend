@@ -6,3 +6,6 @@ logs
 
 # Ignore built frontend
 public
+
+# Ignore playground
+playground
