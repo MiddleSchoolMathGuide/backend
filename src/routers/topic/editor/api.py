@@ -4,13 +4,13 @@ from fastapi.responses import ORJSONResponse
 from const import AUTH_COOKIE
 
 from db.src.auth import session
-from db.src.edu import topics
+from db.src.topic import topics
 
 
 router = APIRouter()
 
 
-@router.put('/edu/editor', response_class=ORJSONResponse)
+@router.put('/topic/editor', response_class=ORJSONResponse)
 async def update_topic(request: Request) -> ORJSONResponse:
     if session.is_expired(request.cookies.get(AUTH_COOKIE)):
         return ORJSONResponse(

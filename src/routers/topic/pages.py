@@ -9,8 +9,8 @@ from db.src.auth import session
 router = APIRouter()
 
 
-@router.get('/edu', response_class=FileResponse)
-async def edu_page(request: Request) -> FileResponse:
+@router.get('/topic', response_class=FileResponse)
+async def topic_page(request: Request) -> FileResponse:
     if session.is_expired(request.cookies.get(AUTH_COOKIE)):
         raise HTTPException(status_code=401, detail="Not authorized")
-    return FileResponse(f'{PAGES}/edu.html')
+    return FileResponse(f'{PAGES}/topic.html')

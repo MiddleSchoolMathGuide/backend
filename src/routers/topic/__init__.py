@@ -4,7 +4,7 @@ from . import pages
 
 from . import editor
 
-edu_routers: tuple[APIRouter, ...] = (
+topic_routers: tuple[APIRouter, ...] = (
     pages.router,
     *editor.editor_routers,
 )
