@@ -1,3 +1,3 @@
-db.topic.deleteMany({});
-db.lesson.deleteMany({});
-db.unit.deleteMany({});
+db.topics.deleteMany({});
+db.lessons.deleteMany({});
+db.units.deleteMany({});
