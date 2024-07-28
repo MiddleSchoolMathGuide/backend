@@ -3,7 +3,7 @@ from fastapi.responses import ORJSONResponse
 
 from const import AUTH_COOKIE
 
-from db.src.auth import login, session
+from db.src.auth import login, session, signup
 
 
 router = APIRouter()
@@ -39,3 +39,16 @@ async def is_logged_in(request: Request) -> ORJSONResponse:
         )
 
     return ORJSONResponse({'ok': True, 'msg': 'User logged in'})
+
+
+@router.post('/auth/signup', response_class=ORJSONResponse)
+async def signup_api(request: Request) -> ORJSONResponse:
+    data = await request.json()
+    msg, id_ = signup.new(data)
+
+    success = id_ is not None
+    response = ORJSONResponse(msg, status_code=200 if success else 500)
+    if success:
+        response.set_cookie(key=AUTH_COOKIE, value=id_)
+        response.set_cookie(key='username',  value=data.get('username'))
+    return response
