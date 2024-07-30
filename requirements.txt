@@ -1,3 +1,4 @@
 fastapi
+orjson
 pymongo
 uvicorn[standard]
