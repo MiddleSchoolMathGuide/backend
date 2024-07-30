@@ -10,11 +10,18 @@ MONGO_DB := MSMGWeb
 PURGE_JS := tools/db/purge.js
 
 BUILD_CMD := npm run build
+INSTALL_FE_CMD := npm install
+INSTALL_BE_CMD := pip install -r requirements.txt
 
 # Define targets
 .PHONY: all build run
 
 all: build run
+
+install:
+	@echo "Installing required software(s)"
+	@cd $(FRONTEND) && $(INSTALL_FE_CMD)
+	$(INSTALL_BE_CMD)
 
 build:
 	@echo "Building frontend..."
