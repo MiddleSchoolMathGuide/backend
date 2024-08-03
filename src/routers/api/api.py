@@ -14,7 +14,7 @@ from db.src.topic import topics
 router = APIRouter()
 
 
-@router.get('/topic/{topic}/{unit}/{lesson}', response_class=ORJSONResponse)
+@router.get('/api/{topic}/{unit}/{lesson}', response_class=ORJSONResponse)
 async def get_lesson_and_context(
     request: Request, topic: str, unit: str, lesson: str
 ) -> ORJSONResponse:
