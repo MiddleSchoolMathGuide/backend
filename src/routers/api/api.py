@@ -34,8 +34,6 @@ async def unit_context(topic: str, unit: str) -> ORJSONResponse:
     if unit_res['ok'] is not True:
         return ORJSONResponse(unit_res)
     lessons_ = unit_res['data']['lessons']
-    print(lessons_)
-    print(units_)
     for i, lesson in enumerate(lessons_):
         lesson.pop('_id', None)
         lesson = {
