@@ -5,7 +5,7 @@ from fastapi.responses import ORJSONResponse
 import json
 import bson
 
-from db.src.topic import topics, units
+from db.src.topic import lessons, topics, units
 
 
 router = APIRouter()
@@ -19,9 +19,34 @@ async def get_lesson_and_context(topic: str, unit: str, lesson: str) -> ORJSONRe
     )
 
 
-@router.get('/api/topics', response_class=ORJSONResponse)
+@router.get('/api/list', response_class=ORJSONResponse)
 async def get_topics() -> ORJSONResponse:
     return ORJSONResponse({'ok': True, 'msg': 'Success', 'data': topics.get_all()})
+
+
+@router.get('/api/list/{topic}', response_class=ORJSONResponse)
+async def get_units(topic: str) -> ORJSONResponse:
+    topic_id = topics.get_id_by_title(topic)
+    if not topic_id:
+        return ORJSONResponse({'ok': False, 'msg': 'No such topic title', 'data': None})
+    return ORJSONResponse(units.get_all(topic_id))
+
+
+@router.get('/api/list/{topic}/{unit}', response_class=ORJSONResponse)
+async def get_lessons(topic: str, unit: str) -> ORJSONResponse:
+    topic_id = topics.get_id_by_title(topic)
+    if not topic_id:
+        return ORJSONResponse({'ok': False, 'msg': 'No such topic title', 'data': None})
+    unit_id = units.get_id_by_title(topic_id, unit)
+    if not unit_id:
+        return ORJSONResponse({'ok': False, 'msg': 'No such unit title', 'data': None})
+    return ORJSONResponse(
+        {
+            'ok': True,
+            'msg': 'Success',
+            'data': lessons.get_all(unit_id)
+        }
+    )
 
 
 @router.get('/api/unit_context/{topic}/{unit}', response_class=ORJSONResponse)
@@ -51,8 +76,10 @@ async def unit_context(topic: str, unit: str) -> ORJSONResponse:
 
         lessons_[i] = lesson
 
-    return ORJSONResponse({
-        'ok': True,
-        'msg': 'Success',
-        'data': {'units': units_, 'lessons': lessons_},
-    })
+    return ORJSONResponse(
+        {
+            'ok': True,
+            'msg': 'Success',
+            'data': {'units': units_, 'lessons': lessons_},
+        }
+    )
