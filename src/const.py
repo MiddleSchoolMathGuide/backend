@@ -10,3 +10,4 @@ ASSETS = f'{PUBLIC}/generated/assets'
 
 DEBUG_FLAG: bool = True
 PORT: int = 8000
+SSL_ENABLED: bool = False

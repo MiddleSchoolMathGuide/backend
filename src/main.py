@@ -7,7 +7,7 @@ import logging.config
 import os
 import uvicorn
 
-from const import DEBUG_FLAG, PORT
+from const import DEBUG_FLAG, PORT, SSL_ENABLED
 from filter import LogFilter
 
 
@@ -20,6 +20,8 @@ def main() -> None:
         reload=DEBUG_FLAG,
         log_config='config/logger.config.ini',
         reload_excludes=['*.log'],
+        ssl_keyfile='../key.pem' if SSL_ENABLED else None,
+        ssl_certfile='../cert.pem' if SSL_ENABLED else None,
     )
 
 
