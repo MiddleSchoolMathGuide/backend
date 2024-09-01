@@ -9,3 +9,7 @@ public
 
 # Ignore playground
 playground
+
+# Ignore SSL certificate and key
+cert.pem
+key.pem
