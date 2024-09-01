@@ -45,3 +45,18 @@ async def get_lessons(topic: str, unit: str) -> ORJSONResponse:
     return ORJSONResponse(
         {'ok': True, 'msg': 'Success', 'data': lessons.get_all(unit_id)}
     )
+
+
+@router.get('/api/search/{tag}', response_class=ORJSONResponse)
+async def search(tag: str) -> ORJSONResponse:
+    return ORJSONResponse(
+        {
+            'ok': True,
+            'msg': 'Success',
+            'data': {
+                'topics': topics.search(tag),
+                'units': units.search(tag),
+                'lessons': lessons.search(tag),
+            },
+        }
+    )
