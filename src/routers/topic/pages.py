@@ -27,7 +27,6 @@ async def topicdir_page(topic: str) -> HTMLResponse:
     if topic_id is not None:
         unit_list = list(units.get_all(topic_id, include_id=True))
         for i, unit in enumerate(unit_list):
-            print(unit)
             unit_list[i]['lessons'] = lessons.get_all(unit['_id'])
 
         data = {'ok': True, 'msg': 'Success', 'data': unit_list}
